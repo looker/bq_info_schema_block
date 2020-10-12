@@ -4,7 +4,7 @@
   elements:
   - title: Job Stages
     name: Job Stages
-    model: bigquery_performance_monitoring
+    model: block_bq_info_schema
     explore: jobs_by_organization_raw
     type: looker_grid
     fields: [jobs_by_organization_raw__job_stages.name, jobs_by_organization_raw__job_stages.total_slot_ms,
@@ -47,7 +47,7 @@
     height: 8
   - title: New Tile
     name: New Tile
-    model: bigquery_performance_monitoring
+    model: block_bq_info_schema
     explore: jobs_by_organization_raw
     type: single_value
     fields: [jobs_by_organization_raw.user_email]
@@ -73,7 +73,7 @@
     height: 3
   - title: Total GiB Processed
     name: Total GiB Processed
-    model: bigquery_performance_monitoring
+    model: block_bq_info_schema
     explore: jobs_by_organization_raw
     type: single_value
     fields: [jobs_by_organization_raw.total_gb_processed]
@@ -98,7 +98,7 @@
     height: 3
   - title: Bytes Spilled to Disk
     name: Bytes Spilled to Disk
-    model: bigquery_performance_monitoring
+    model: block_bq_info_schema
     explore: jobs_by_organization_raw
     type: single_value
     fields: [jobs_by_organization_raw.average_shuffle_output_bytes_spilled]
@@ -128,7 +128,7 @@
     default_value: ''
     allow_multiple_values: true
     required: false
-    model: bigquery_performance_monitoring
+    model: block_bq_info_schema
     explore: jobs_by_organization_raw
     listens_to_filters: []
     field: jobs_by_organization_raw.job_id

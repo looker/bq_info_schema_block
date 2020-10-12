@@ -1,20 +1,21 @@
-include: "//@{CONFIG_PROJECT_NAME}/views/commit_facts.view.lkml" 
-        
-        
+include: "//@{CONFIG_PROJECT_NAME}/views/commit_facts.view.lkml"
+
+
 view: commit_facts {
   extends: [commit_facts_config]
 }
 
 ###################################################
-        
+
 view: commit_facts_core {
+  extension: required
   derived_table: {
     sql: WITH t AS (SELECT TIMESTAMP_TRUNC(change_timestamp,MINUTE) as change_timestamp, project_id, capacity_commitment_id,
         IF(commitment_plan != 'FLEX', 0, IF(action IN ('UPDATE', 'CREATE'), slot_count, slot_count * -1)) as flex_change,
         IF(commitment_plan != 'MONTHLY', 0, IF(action IN ('UPDATE', 'CREATE'), slot_count, slot_count * -1)) as monthly_change,
         IF(commitment_plan != 'ANNUAL', 0, IF(action IN ('UPDATE', 'CREATE'), slot_count, slot_count * -1)) as annual_change,
         LEAD(change_timestamp, 1) OVER(ORDER BY change_timestamp ASC) next_change_timestamp
-      FROM `bq-admin-buzzfeed.region-us.INFORMATION_SCHEMA.CAPACITY_COMMITMENT_CHANGES_BY_PROJECT` WHERE state = 'ACTIVE'),
+      FROM `@{BQ_ADMIN_PROJECT}.@{REGION}.INFORMATION_SCHEMA.CAPACITY_COMMITMENT_CHANGES_BY_PROJECT` WHERE state = 'ACTIVE'),
       minutes AS (SELECT TIMESTAMP_TRUNC(timestamp, MINUTE) timestamp, FROM (SELECT GENERATE_TIMESTAMP_ARRAY(TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 90 DAY), CURRENT_TIMESTAMP(), INTERVAL 1 MINUTE) timestamps), UNNEST(timestamps) timestamp
       order by timestamp desc)
 

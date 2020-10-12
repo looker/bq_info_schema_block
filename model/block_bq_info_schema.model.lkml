@@ -1,11 +1,11 @@
 connection: "@{CONNECTION_NAME}"
 
-include: "views/*.view.lkml"
-include: "*.explore.lkml"
-include: "*.dashboard.lookml"
-include: "//@{CONFIG_PROJECT_NAME}/*.view.lkml"
-include: "//@{CONFIG_PROJECT_NAME}/*.model.lkml"
-include: "//@{CONFIG_PROJECT_NAME}/*.dashboard"
+include: "../views/*.view.lkml"
+include: "../*.explore.lkml"
+include: "../dashboards/*.dashboard.lookml"
+include: "//@{CONFIG_PROJECT_NAME}/views/*.view.lkml"
+include: "//@{CONFIG_PROJECT_NAME}/model/*.model.lkml"
+include: "//@{CONFIG_PROJECT_NAME}/dashboards/*.dashboard"
 
 explore: commit_facts {
   extends: [commit_facts_config]
@@ -30,4 +30,3 @@ explore: timeline_with_commits {
 explore: concurrency_per_second {
   extends: [concurrency_per_second_config]
 }
-

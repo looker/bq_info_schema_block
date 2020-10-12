@@ -5,7 +5,7 @@
   elements:
   - title: Average Slot Utilization by Hour of Day and Day of Week
     name: Average Slot Utilization by Hour of Day and Day of Week
-    model: bigquery_performance_monitoring
+    model: block_bq_info_schema
     explore: jobs_timeline_by_organization
     type: looker_line
     fields: [jobs_timeline_by_organization.period_start_hour_of_day, jobs_timeline_by_organization.period_start_day_of_week,
@@ -100,7 +100,7 @@
     height: 6
   - title: GB Processed
     name: GB Processed
-    model: bigquery_performance_monitoring
+    model: block_bq_info_schema
     explore: jobs_by_organization_raw
     type: single_value
     fields: [jobs_by_organization_raw.total_gb_processed, jobs_by_organization_raw__job_stages.total_shuffle_output_gibibytes_spilled]
@@ -166,7 +166,7 @@
     height: 5
   - title: Power Users
     name: Power Users
-    model: bigquery_performance_monitoring
+    model: block_bq_info_schema
     explore: jobs_by_organization_raw
     type: looker_grid
     fields: [jobs_by_organization_raw.count_of_jobs, jobs_by_organization_raw.total_gb_processed,
@@ -256,7 +256,7 @@
     height: 8
   - title: New Tile
     name: New Tile
-    model: bigquery_performance_monitoring
+    model: block_bq_info_schema
     explore: jobs_by_organization_raw
     type: single_value
     fields: [jobs_by_organization_raw.total_queries_ran, jobs_by_organization_raw.percent_of_queries_cached]
@@ -350,7 +350,7 @@
     height: 2
   - title: Usage by Project
     name: Usage by Project
-    model: bigquery_performance_monitoring
+    model: block_bq_info_schema
     explore: jobs_by_organization_raw
     type: looker_grid
     fields: [jobs_by_organization_raw.count_of_jobs, jobs_by_organization_raw.total_gb_processed,
@@ -441,7 +441,7 @@
     height: 8
   - title: Average Query Duration by Hour of Day and Day of Week
     name: Average Query Duration by Hour of Day and Day of Week
-    model: bigquery_performance_monitoring
+    model: block_bq_info_schema
     explore: jobs_by_organization_raw
     type: looker_line
     fields: [jobs_by_organization_raw.creation_hour_of_day, jobs_by_organization_raw.creation_day_of_week,
@@ -536,7 +536,7 @@
     height: 7
   - title: GB Processed by Hour of Day and Day of Week
     name: GB Processed by Hour of Day and Day of Week
-    model: bigquery_performance_monitoring
+    model: block_bq_info_schema
     explore: jobs_timeline_by_organization
     type: looker_line
     fields: [jobs_timeline_by_organization.period_start_hour_of_day, jobs_timeline_by_organization.period_start_day_of_week,
@@ -631,7 +631,7 @@
     height: 7
   - title: Queries Spilling to Disk
     name: Queries Spilling to Disk
-    model: bigquery_performance_monitoring
+    model: block_bq_info_schema
     explore: jobs_by_organization_raw
     type: looker_grid
     fields: [jobs_by_organization_raw.job_id, jobs_by_organization_raw.user_email,
@@ -754,7 +754,7 @@
     height: 7
   - title: Week over Week Usage by Project
     name: Week over Week Usage by Project
-    model: bigquery_performance_monitoring
+    model: block_bq_info_schema
     explore: jobs_by_organization_raw_all_queries
     type: looker_line
     fields: [jobs_by_organization_raw_all_queries.project_id, jobs_by_organization_raw_all_queries.creation_week,
@@ -806,7 +806,7 @@
     height: 16
   - title: Average Query Duration
     name: Average Query Duration
-    model: bigquery_performance_monitoring
+    model: block_bq_info_schema
     explore: jobs_by_organization_raw
     type: single_value
     fields: [jobs_by_organization_raw.average_duration_seconds]
@@ -867,7 +867,7 @@
     height: 4
   - title: Queries by Day of Week
     name: Queries by Day of Week
-    model: bigquery_performance_monitoring
+    model: block_bq_info_schema
     explore: jobs_by_organization_raw
     type: looker_column
     fields: [jobs_by_organization_raw.creation_day_of_week, jobs_by_organization_raw.average_duration_seconds,
@@ -924,7 +924,7 @@
     height: 7
   - title: Performance by Date
     name: Performance by Date
-    model: bigquery_performance_monitoring
+    model: block_bq_info_schema
     explore: jobs_by_organization_raw
     type: looker_line
     fields: [jobs_by_organization_raw.creation_date, jobs_by_organization_raw.average_duration_seconds,
@@ -974,7 +974,7 @@
     height: 7
   - title: Gb Processed Last Week vs This
     name: Gb Processed Last Week vs This
-    model: bigquery_performance_monitoring
+    model: block_bq_info_schema
     explore: jobs_by_organization_raw
     type: looker_column
     fields: [jobs_by_organization_raw.creation_day_of_week, jobs_by_organization_raw.creation_week,
@@ -1045,7 +1045,7 @@
     default_value: ''
     allow_multiple_values: true
     required: false
-    model: bigquery_performance_monitoring
+    model: block_bq_info_schema
     explore: jobs_by_organization_raw_all_queries
     listens_to_filters: []
     field: jobs_by_organization_raw_all_queries.project_id

@@ -1,35 +1,38 @@
 {
-  "label": "Snowflake Cost and Usage",
+  "label": "BigQuery Information Schema Performance Monitoring",
   "category_label": "Models",
   "branding": {
-    "image_uri": "https://wwwstatic-a.lookercdn.com/blocks/logos/snowflake.png",
-    "tagline": "Know and Explore your Snowflake Usage"
+    "image_uri": "https://marketplace-api.looker.com/block-icons/bq_icon.png",
+    "tagline": "Monitor and Explore your BigQuery Usage and Slot Consumption"
   },
 
     "constants": {
-        "CONFIG_PROJECT_NAME": {
-            "label": "Config Project Name"
-        },
-        "CONNECTION_NAME": {
-            "label": "Connection name",
-            "value_constraint": "connection"
-        },
-        "DATABASE_NAME": {
-            "label": "Database Name"
-        }
+      "CONFIG_PROJECT_NAME": {
+        "label": "Config Project Name"
+      },
+      "CONNECTION_NAME": {
+        "label": "Connection name",
+        "value_constraint": "connection"
+      },
+      "BQ_ADMIN_PROJECT": {
+        "label": "BigQuery Admin Project"
+      },
+      "REGION": {
+        "label": "Dataset Location"
+      }
     },
     "models": [
-        {
-            "name": "block_snowflake_usage",
-            "connection_constant": "CONNECTION_NAME"
-        }
+      {
+        "name": "block_bq_info_schema",
+        "connection_constant": "CONNECTION_NAME"
+      }
     ],
     "auxiliary_projects": [
-        {
-            "git_uri": "git://github.com/looker/block-snowflake-usage-config.git",
-            "git_ref": "dcf5c8e239bb51782675f783ea9c84ba119f8d22",
-            "label": "Snowflake Cost and Usage Config",
-            "constant_name": "CONFIG_PROJECT_NAME"
-        }
+      {
+        "git_uri": "git://github.com/looker/bq_info_schema_block_config.git",
+        "git_ref": "d217520f9baaf4408c09d62669d8458b76ef683b",
+        "label": "BQ Info Schema Config",
+        "constant_name": "CONFIG_PROJECT_NAME"
+      }
     ]
 }

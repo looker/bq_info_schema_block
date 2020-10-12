@@ -1,15 +1,16 @@
-include: "//@{CONFIG_PROJECT_NAME}/views/tables.view.lkml" 
-        
-        
+include: "//@{CONFIG_PROJECT_NAME}/views/tables.view.lkml"
+
+
 view: tables {
   extends: [tables_config]
 }
 
 ###################################################
-        
+
 view: tables_core {
+  extension: required
   derived_table: {
-    sql: SELECT * FROM `region-us.INFORMATION_SCHEMA.TABLES` ;;
+    sql: SELECT * FROM `@{REGION}.INFORMATION_SCHEMA.TABLES` ;;
   }
 
   measure: count {

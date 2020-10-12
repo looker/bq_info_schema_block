@@ -1,6 +1,6 @@
-include: "//@{CONFIG_PROJECT_NAME}/views/jobs_by_organization_snapshot_raw.view.lkml" 
-        
-        
+include: "//@{CONFIG_PROJECT_NAME}/views/jobs_by_organization_snapshot_raw.view.lkml"
+
+
 view: jobs_by_organization_snapshot_raw {
   extends: [jobs_by_organization_snapshot_raw_config]
 }
@@ -11,8 +11,9 @@ view: jobs_by_organization_snapshot__snapshot {
 }
 
 ###################################################
-        
+
 view: jobs_by_organization_snapshot_raw_core {
+  extension: required
   derived_table: {
     sql: SELECT
           job_id,
@@ -25,7 +26,7 @@ view: jobs_by_organization_snapshot_raw_core {
             FROM
               UNNEST(timeline) AS t)) AS snapshot
         FROM
-          region-us.INFORMATION_SCHEMA.JOBS_BY_ORGANIZATION ;;
+          @{REGION}.INFORMATION_SCHEMA.JOBS_BY_ORGANIZATION ;;
   }
 
   dimension: job_id {
@@ -43,6 +44,8 @@ view: jobs_by_organization_snapshot_raw_core {
 }
 
 view: jobs_by_organization_snapshot__snapshot_core {
+  extension: required
+
   dimension_group: time {
     type: time
     sql: ${TABLE}.time ;;

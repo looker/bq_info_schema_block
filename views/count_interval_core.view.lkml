@@ -1,13 +1,14 @@
-include: "//@{CONFIG_PROJECT_NAME}/views/count_interval.view.lkml" 
-        
-        
+include: "//@{CONFIG_PROJECT_NAME}/views/count_interval.view.lkml"
+
+
 view: count_interval {
   extends: [count_interval_config]
 }
 
 ###################################################
-        
+
 view: count_interval_core {
+  extension: required
   derived_table: {
     sql: WITH
       raw_date_range as (

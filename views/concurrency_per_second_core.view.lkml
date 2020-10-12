@@ -1,18 +1,19 @@
-include: "//@{CONFIG_PROJECT_NAME}/views/concurrency_per_second.view.lkml" 
-        
-        
+include: "//@{CONFIG_PROJECT_NAME}/views/concurrency_per_second.view.lkml"
+
+
 view: concurrency_per_second {
   extends: [concurrency_per_second_config]
 }
 
 ###################################################
-        
+
 view: concurrency_per_second_core {
+  extension: required
   derived_table: {
     sql: WITH seconds as (
           SELECT TIMESTAMP_TRUNC(timestamp, SECOND) timestamp, FROM (SELECT GENERATE_TIMESTAMP_ARRAY(TIMESTAMP_SUB({% date_end jobs_timeline_by_organization.date_filter %}, INTERVAL 2 DAY), {% date_end jobs_timeline_by_organization.date_filter %}, INTERVAL 1 SECOND) timestamps), UNNEST(timestamps) timestamp
       ), filtered_jobs_timeline as (
-      SELECT * from `region-us.INFORMATION_SCHEMA`.JOBS_TIMELINE_BY_ORGANIZATION f
+      SELECT * from `@{REGION}.INFORMATION_SCHEMA`.JOBS_TIMELINE_BY_ORGANIZATION f
       WHERE f.job_creation_time BETWEEN TIMESTAMP_SUB({% date_start jobs_timeline_by_organization.date_filter %}, INTERVAL 6 HOUR) AND {% date_end jobs_timeline_by_organization.date_filter %}
       )
           SELECT
@@ -35,6 +36,10 @@ view: concurrency_per_second_core {
     drill_fields: [detail*]
   }
 
+  filter: date_window {
+    type: date
+  }
+
   measure: avg_pending {
     type: average
     sql: ${pending} ;;
@@ -55,10 +60,6 @@ view: concurrency_per_second_core {
     label: "Max Concurrency"
     type: max
     sql: nullif(${running},0) ;;
-  }
-
-  filters: date_window {
-    type: date
   }
 
   dimension_group: timestamp {
