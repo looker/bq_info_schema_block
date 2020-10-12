@@ -4,6 +4,7 @@ project_name: "block-bq-info-schema"
 
 constant: CONFIG_PROJECT_NAME {
   value: "block-bq-info-schema-config"
+  export: override_required
 }
 
 constant: CONNECTION_NAME {

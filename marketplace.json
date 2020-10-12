@@ -15,10 +15,12 @@
         "value_constraint": "connection"
       },
       "BQ_ADMIN_PROJECT": {
-        "label": "BigQuery Admin Project"
+        "label": "BigQuery Admin Project",
+        "description": "The name of your BigQuery Admin Project"
       },
       "REGION": {
-        "label": "Dataset Location"
+        "label": "Dataset Location",
+        "description": "For example 'region-us' or 'asia-northeast1' etc..."
       }
     },
     "models": [
