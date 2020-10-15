@@ -16,11 +16,11 @@
       },
       "BQ_ADMIN_PROJECT": {
         "label": "BigQuery Admin Project",
-        "description": "The name of your BigQuery Admin Project"
+        "description": "The Name of your BigQuery Admin Project."
       },
       "REGION": {
         "label": "Dataset Location",
-        "description": "For example 'region-us' or 'asia-northeast1' etc..."
+        "description": "For example 'us-west2' or 'asia-northeast1'."
       }
     },
     "models": [
