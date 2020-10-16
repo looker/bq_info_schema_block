@@ -11,7 +11,7 @@
         "label": "Config Project Name"
       },
       "CONNECTION_NAME": {
-        "label": "Connection name",
+        "label": "Connection Name",
         "value_constraint": "connection"
       },
       "BQ_ADMIN_PROJECT": {
