@@ -32,7 +32,7 @@
     "auxiliary_projects": [
       {
         "git_uri": "git://github.com/looker/bq_info_schema_block_config.git",
-        "git_ref": "d217520f9baaf4408c09d62669d8458b76ef683b",
+        "git_ref": "17efa4cfc514ddbbc10357e29a7d81b924720018",
         "label": "BQ Info Schema Config",
         "constant_name": "CONFIG_PROJECT_NAME"
       }
