@@ -45,57 +45,6 @@
     col: 0
     width: 24
     height: 8
-  - title: New Tile
-    name: New Tile
-    model: block_bq_info_schema
-    explore: jobs_by_organization_raw
-    type: single_value
-    fields: [jobs_by_organization_raw.user_email]
-    sorts: [jobs_by_organization_raw.user_email]
-    limit: 500
-    query_timezone: America/Los_Angeles
-    custom_color_enabled: true
-    show_single_value_title: true
-    show_comparison: false
-    comparison_type: value
-    comparison_reverse_colors: false
-    show_comparison_label: true
-    enable_conditional_formatting: false
-    conditional_formatting_include_totals: false
-    conditional_formatting_include_nulls: false
-    series_types: {}
-    defaults_version: 1
-    listen:
-      Job Id: jobs_by_organization_raw.job_id
-    row: 0
-    col: 0
-    width: 8
-    height: 3
-  - title: Total GiB Processed
-    name: Total GiB Processed
-    model: block_bq_info_schema
-    explore: jobs_by_organization_raw
-    type: single_value
-    fields: [jobs_by_organization_raw.total_gb_processed]
-    limit: 500
-    query_timezone: America/Los_Angeles
-    custom_color_enabled: true
-    show_single_value_title: true
-    show_comparison: false
-    comparison_type: value
-    comparison_reverse_colors: false
-    show_comparison_label: true
-    enable_conditional_formatting: false
-    conditional_formatting_include_totals: false
-    conditional_formatting_include_nulls: false
-    series_types: {}
-    defaults_version: 1
-    listen:
-      Job Id: jobs_by_organization_raw.job_id
-    row: 0
-    col: 8
-    width: 8
-    height: 3
   - title: Bytes Spilled to Disk
     name: Bytes Spilled to Disk
     model: block_bq_info_schema
@@ -119,6 +68,57 @@
       Job Id: jobs_by_organization_raw.job_id
     row: 0
     col: 16
+    width: 8
+    height: 3
+  - title: Total GB Processed
+    name: Total GB Processed
+    model: block_bq_info_schema
+    explore: jobs_by_organization_raw
+    type: single_value
+    fields: [jobs_by_organization_raw.total_gb_processed]
+    limit: 500
+    query_timezone: America/Los_Angeles
+    custom_color_enabled: true
+    show_single_value_title: true
+    show_comparison: false
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    series_types: {}
+    defaults_version: 1
+    listen:
+      Job Id: jobs_by_organization_raw.job_id
+    row: 0
+    col: 8
+    width: 8
+    height: 3
+  - title: User Email
+    name: User Email
+    model: block_bq_info_schema
+    explore: jobs_by_organization_raw
+    type: single_value
+    fields: [jobs_by_organization_raw.user_email]
+    sorts: [jobs_by_organization_raw.user_email]
+    limit: 500
+    query_timezone: America/Los_Angeles
+    custom_color_enabled: true
+    show_single_value_title: true
+    show_comparison: false
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    series_types: {}
+    defaults_version: 1
+    listen:
+      Job Id: jobs_by_organization_raw.job_id
+    row: 0
+    col: 0
     width: 8
     height: 3
   filters:

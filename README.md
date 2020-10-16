@@ -8,5 +8,5 @@ This block is designed to provide a comprehensive view of all jobs and queries p
 
 For Flat-Rate customers, this block allows for near real-time monitoring of slot usage against capacity commitments, as well as any queries being cached or slowed down due to heavy consumption. Identify spikes in slot usage across the organization, correlating to an increase in pending units and a slowdown across the system due to capacity being reached.
 
-For On-Demand customers, the near real-time analysis tracks Gigabytes processed across all projects and queries, with a cost estimator mapped to BigQuery;s on-demand model, to understand what is driving spend across the organization and identify patterns in usage over time.
+For On-Demand customers, the near real-time analysis tracks Gigabytes processed across all projects and queries, with a cost estimator mapped to BigQuery's on-demand model, to understand what is driving spend across the organization and identify patterns in usage over time.
 From this real-time tracking of slot usage and bytes processed across the organization, we can identify the spikes in usage and spend, drill down to the individual jobs that are driving these spikes, and optimize these queries by breaking them down into the execution stages and tables required to complete the job.

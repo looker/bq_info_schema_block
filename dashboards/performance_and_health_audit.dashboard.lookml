@@ -1,7 +1,6 @@
 - dashboard: performance_summary
   title: Performance Summary
   layout: newspaper
-  preferred_viewer: dashboards
   elements:
   - title: Average Slot Utilization by Hour of Day and Day of Week
     name: Average Slot Utilization by Hour of Day and Day of Week
@@ -12,7 +11,6 @@
       jobs_timeline_by_organization.slots_per_30_days_hour]
     pivots: [jobs_timeline_by_organization.period_start_day_of_week]
     fill_fields: [jobs_timeline_by_organization.period_start_day_of_week, jobs_timeline_by_organization.period_start_hour_of_day]
-    filters: {}
     sorts: [jobs_timeline_by_organization.period_start_day_of_week 0, jobs_timeline_by_organization.slots_per_30_days_hour
         desc 0]
     limit: 1440
@@ -448,7 +446,6 @@
       jobs_by_organization_raw.average_duration_seconds]
     pivots: [jobs_by_organization_raw.creation_day_of_week]
     fill_fields: [jobs_by_organization_raw.creation_day_of_week, jobs_by_organization_raw.creation_hour_of_day]
-    filters: {}
     sorts: [jobs_by_organization_raw.creation_day_of_week, jobs_by_organization_raw.average_duration_seconds
         desc 0]
     limit: 1440
@@ -543,7 +540,6 @@
       jobs_timeline_by_organization.gb_processed_30_day]
     pivots: [jobs_timeline_by_organization.period_start_day_of_week]
     fill_fields: [jobs_timeline_by_organization.period_start_day_of_week, jobs_timeline_by_organization.period_start_hour_of_day]
-    filters: {}
     sorts: [jobs_timeline_by_organization.period_start_day_of_week 0, jobs_timeline_by_organization.gb_processed_30_day
         desc 0]
     limit: 1440
@@ -752,65 +748,12 @@
     col: 5
     width: 19
     height: 7
-  - title: Week over Week Usage by Project
-    name: Week over Week Usage by Project
-    model: block_bq_info_schema
-    explore: jobs_by_organization_raw_all_queries
-    type: looker_line
-    fields: [jobs_by_organization_raw_all_queries.project_id, jobs_by_organization_raw_all_queries.creation_week,
-      jobs_by_organization_raw_all_queries.total_gb_processed]
-    pivots: [jobs_by_organization_raw_all_queries.project_id]
-    fill_fields: [jobs_by_organization_raw_all_queries.creation_week]
-    filters:
-      project_gb_rank_ndt.rank: "<=10"
-    sorts: [jobs_by_organization_raw_all_queries.creation_week desc, jobs_by_organization_raw_all_queries.project_id]
-    limit: 500
-    query_timezone: America/Los_Angeles
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: false
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    plot_size_by_field: false
-    trellis: ''
-    stacking: ''
-    limit_displayed_rows: false
-    legend_position: center
-    point_style: none
-    show_value_labels: false
-    label_density: 25
-    x_axis_scale: auto
-    y_axis_combined: true
-    show_null_points: true
-    interpolation: linear
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    defaults_version: 1
-    series_types: {}
-    listen:
-      Reporting Period: jobs_by_organization_raw_all_queries.creation_date
-      Project ID: jobs_by_organization_raw_all_queries.project_id
-    row: 41
-    col: 15
-    width: 9
-    height: 16
   - title: Average Query Duration
     name: Average Query Duration
     model: block_bq_info_schema
     explore: jobs_by_organization_raw
     type: single_value
     fields: [jobs_by_organization_raw.average_duration_seconds]
-    filters: {}
     limit: 500
     column_limit: 50
     query_timezone: America/Los_Angeles
@@ -903,12 +846,9 @@
     show_totals_labels: false
     show_silhouette: false
     totals_color: "#808080"
-    y_axes: [{label: '', orientation: left, series: [{axisId: jobs_by_organization_raw.average_duration_seconds,
-            id: jobs_by_organization_raw.average_duration_seconds, name: Average Duration
-              Seconds}], showLabels: true, showValues: true, unpinAxis: false, tickDensity: default,
+    y_axes: [{label: '', orientation: left, showLabels: true, showValues: true, unpinAxis: false, tickDensity: default,
         tickDensityCustom: 5, type: linear}, {label: !!null '', orientation: right,
-        series: [{axisId: jobs_by_organization_raw.total_queries_ran, id: jobs_by_organization_raw.total_queries_ran,
-            name: Total Queries Ran}], showLabels: true, showValues: true, unpinAxis: false,
+        showLabels: true, showValues: true, unpinAxis: false,
         tickDensity: default, tickDensityCustom: 5, type: linear}]
     series_types:
       jobs_by_organization_raw.average_duration_seconds: line
@@ -957,14 +897,14 @@
     y_axis_combined: true
     show_null_points: true
     interpolation: linear
-    y_axes: [{label: !!null '', orientation: left, series: [{axisId: jobs_by_organization_raw.total_gb_processed,
-            id: jobs_by_organization_raw.total_gb_processed, name: Total GiB Processed}],
+    y_axes: [{label: !!null '', orientation: left,
         showLabels: true, showValues: true, unpinAxis: false, tickDensity: default,
         tickDensityCustom: 5, type: linear}, {label: !!null '', orientation: right,
-        series: [{axisId: jobs_by_organization_raw.average_duration_seconds, id: jobs_by_organization_raw.average_duration_seconds,
-            name: Average Duration Seconds}], showLabels: true, showValues: true,
+        showLabels: true, showValues: true,
         unpinAxis: false, tickDensity: default, tickDensityCustom: 5, type: linear}]
     series_types: {}
+    series_labels:
+      jobs_by_organization_raw.total_gb_processed: Total GB Processed
     defaults_version: 1
     listen:
       Reporting Period: jobs_by_organization_raw.creation_date
@@ -972,8 +912,8 @@
     col: 5
     width: 19
     height: 7
-  - title: Gb Processed Last Week vs This
-    name: Gb Processed Last Week vs This
+  - title: GB Processed Last Week vs This Week
+    name: GB Processed Last Week vs This Week
     model: block_bq_info_schema
     explore: jobs_by_organization_raw
     type: looker_column
@@ -1013,22 +953,71 @@
     show_totals_labels: false
     show_silhouette: false
     totals_color: "#808080"
-    y_axes: [{label: '', orientation: left, series: [{axisId: jobs_by_organization_raw.average_duration_seconds,
-            id: jobs_by_organization_raw.average_duration_seconds, name: Average Duration
-              Seconds}], showLabels: true, showValues: true, unpinAxis: false, tickDensity: default,
-        tickDensityCustom: 5, type: linear}, {label: !!null '', orientation: right,
-        series: [{axisId: jobs_by_organization_raw.total_queries_ran, id: jobs_by_organization_raw.total_queries_ran,
-            name: Total Queries Ran}], showLabels: true, showValues: true, unpinAxis: false,
-        tickDensity: default, tickDensityCustom: 5, type: linear}]
+    y_axes: [{label: Total GB Processed, orientation: left,
+        showLabels: true, showValues: true, unpinAxis: false, tickDensity: default,
+        type: linear}]
     series_types: {}
-    series_labels:
-      2020-09-28 - jobs_by_organization_raw.total_gb_processed: Last Week
-      2020-10-05 - jobs_by_organization_raw.total_gb_processed: This Week
+    series_labels: {}
     defaults_version: 1
+    listen: {}
     row: 32
     col: 0
     width: 10
     height: 7
+  - title: Week over Week Usage by Project
+    name: Week over Week Usage by Project
+    model: block_bq_info_schema
+    explore: jobs_by_organization_raw_all_queries
+    type: looker_line
+    fields: [jobs_by_organization_raw_all_queries.project_id, jobs_by_organization_raw_all_queries.creation_week,
+      jobs_by_organization_raw_all_queries.total_gb_processed]
+    pivots: [jobs_by_organization_raw_all_queries.project_id]
+    fill_fields: [jobs_by_organization_raw_all_queries.creation_week]
+    filters:
+      project_gb_rank_ndt.rank: "<=10"
+    sorts: [jobs_by_organization_raw_all_queries.creation_week desc, jobs_by_organization_raw_all_queries.project_id]
+    limit: 500
+    query_timezone: America/Los_Angeles
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: ''
+    limit_displayed_rows: false
+    legend_position: center
+    point_style: none
+    show_value_labels: false
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    show_null_points: true
+    interpolation: linear
+    y_axes: [{label: Total GB Processed, orientation: left, showLabels: true, showValues: true, unpinAxis: false,
+        tickDensity: default, tickDensityCustom: 5, type: linear}]
+    series_types: {}
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    defaults_version: 1
+    listen:
+      Reporting Period: jobs_by_organization_raw_all_queries.creation_date
+      Project ID: jobs_by_organization_raw_all_queries.project_id
+    row: 41
+    col: 15
+    width: 9
+    height: 16
   filters:
   - name: Reporting Period
     title: Reporting Period
@@ -1036,9 +1025,6 @@
     default_value: 30 days
     allow_multiple_values: true
     required: false
-    ui_config:
-      type: advanced
-      display: popover
   - name: Project ID
     title: Project ID
     type: field_filter

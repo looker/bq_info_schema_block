@@ -20,7 +20,7 @@
       },
       "REGION": {
         "label": "Dataset Location",
-        "description": "For example 'us-west2' or 'asia-northeast1'."
+        "description": "For example 'region-us' or 'region-eu'."
       }
     },
     "models": [

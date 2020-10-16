@@ -1,7 +1,6 @@
 - dashboard: issue_investigation
   title: Issue Investigation
   layout: newspaper
-  preferred_viewer: dashboards
   elements:
   - title: GB Processed
     name: GB Processed
@@ -128,102 +127,13 @@
     type: text
     title_text: <font color="#4285F4" size="4.5" weight="bold"><i class="fa fa-search"
       aria-hidden="true"></i><strong>Usage Deep Dive</strong>
-    subtitle_text: Slot Consumption against capacity in 5 minute intervals
-    body_text: Links to Documentation
+    subtitle_text: <a href = "https://cloud.google.com/bigquery/docs/slots">Slot Consumption</a>
+      against capacity in 5 minute intervals
+    body_text: ''
     row: 0
     col: 0
     width: 24
     height: 2
-  - title: Slots Used by Project
-    name: Slots Used by Project
-    model: block_bq_info_schema
-    explore: jobs_timeline_by_organization
-    type: looker_area
-    fields: [jobs_timeline_by_organization.period_start_minute5, jobs_timeline_by_organization.total_slot_5minutes,
-      jobs_timeline_by_organization.project_id]
-    pivots: [jobs_timeline_by_organization.project_id]
-    fill_fields: [jobs_timeline_by_organization.period_start_minute5]
-    sorts: [jobs_timeline_by_organization.period_start_minute5 desc, jobs_timeline_by_organization.project_id]
-    limit: 500
-    query_timezone: America/Los_Angeles
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: false
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    plot_size_by_field: false
-    trellis: ''
-    stacking: normal
-    limit_displayed_rows: false
-    legend_position: center
-    point_style: none
-    show_value_labels: false
-    label_density: 25
-    x_axis_scale: auto
-    y_axis_combined: true
-    show_null_points: true
-    interpolation: linear
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    series_types: {}
-    defaults_version: 1
-    listen:
-      Reporting Period: jobs_timeline_by_organization.job_creation_time_date
-      Project ID: jobs_timeline_by_organization.project_id
-    row: 10
-    col: 0
-    width: 24
-    height: 6
-  - title: Query Concurrency
-    name: Query Concurrency
-    model: block_bq_info_schema
-    explore: concurrency_per_second
-    type: looker_line
-    fields: [concurrency_per_second.timestamp_minute5, concurrency_per_second.avg_running,
-      concurrency_per_second.max_running, concurrency_per_second.max_pending]
-    sorts: [concurrency_per_second.timestamp_minute5 desc]
-    limit: 500
-    query_timezone: America/Los_Angeles
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: false
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    plot_size_by_field: false
-    trellis: ''
-    stacking: ''
-    limit_displayed_rows: false
-    legend_position: center
-    point_style: none
-    show_value_labels: false
-    label_density: 25
-    x_axis_scale: auto
-    y_axis_combined: true
-    show_null_points: false
-    interpolation: linear
-    defaults_version: 1
-    listen:
-      Reporting Period: jobs_timeline_by_organization.date_filter
-      Project ID: concurrency_per_second.project_id
-    row: 16
-    col: 0
-    width: 24
-    height: 7
   - title: Slots vs Commitments
     name: Slots vs Commitments
     model: block_bq_info_schema
@@ -259,11 +169,7 @@
     y_axis_combined: true
     show_null_points: true
     interpolation: linear
-    y_axes: [{label: !!null '', orientation: left, series: [{axisId: commit_facts.annual_commit,
-            id: commit_facts.annual_commit, name: Annual Commit}, {axisId: commit_facts.flex_commit,
-            id: commit_facts.flex_commit, name: Flex Commit}, {axisId: commit_facts.monthly_commit,
-            id: commit_facts.monthly_commit, name: Monthly Commit}, {axisId: timeline_with_commits.total_slot_5minutes,
-            id: timeline_with_commits.total_slot_5minutes, name: Slots Used by 5 Minutes}],
+    y_axes: [{label: !!null '', orientation: left,
         showLabels: true, showValues: true, unpinAxis: false, tickDensity: default,
         tickDensityCustom: 5, type: linear}]
     series_types:
@@ -280,6 +186,100 @@
     col: 5
     width: 19
     height: 8
+  - title: Slots Used by Project
+    name: Slots Used by Project
+    model: block_bq_info_schema
+    explore: jobs_timeline_by_organization
+    type: looker_area
+    fields: [jobs_timeline_by_organization.period_start_minute5, jobs_timeline_by_organization.total_slot_5minutes,
+      jobs_timeline_by_organization.project_id]
+    pivots: [jobs_timeline_by_organization.project_id]
+    fill_fields: [jobs_timeline_by_organization.period_start_minute5]
+    sorts: [jobs_timeline_by_organization.period_start_minute5 desc, jobs_timeline_by_organization.project_id]
+    limit: 500
+    query_timezone: America/Los_Angeles
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: false
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: normal
+    limit_displayed_rows: false
+    legend_position: center
+    point_style: none
+    show_value_labels: false
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    show_null_points: true
+    interpolation: linear
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    y_axes: [{label: '', orientation: left, showLabels: true, showValues: true, valueFormat: '',
+        unpinAxis: false, tickDensity: default, tickDensityCustom: 5, type: linear}]
+    series_types: {}
+    defaults_version: 1
+    listen:
+      Reporting Period: jobs_timeline_by_organization.job_creation_time_date
+      Project ID: jobs_timeline_by_organization.project_id
+    row: 10
+    col: 0
+    width: 24
+    height: 6
+  - title: Query Concurrency
+    name: Query Concurrency
+    model: block_bq_info_schema
+    explore: concurrency_per_second
+    type: looker_line
+    fields: [concurrency_per_second.timestamp_minute5, concurrency_per_second.avg_running,
+      concurrency_per_second.max_running, concurrency_per_second.max_pending]
+    sorts: [concurrency_per_second.timestamp_minute5 desc]
+    limit: 500
+    query_timezone: America/Los_Angeles
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: false
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: ''
+    limit_displayed_rows: false
+    legend_position: center
+    point_style: none
+    show_value_labels: false
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    show_null_points: false
+    interpolation: linear
+    y_axes: [{label: Concurrent Queries, orientation: left, showLabels: true, showValues: true, valueFormat: '0.00',
+        unpinAxis: false, tickDensity: default, tickDensityCustom: 5, type: linear}]
+    defaults_version: 1
+    listen:
+      Reporting Period: jobs_timeline_by_organization.date_filter
+      Project ID: concurrency_per_second.project_id
+    row: 16
+    col: 0
+    width: 24
+    height: 7
   filters:
   - name: Reporting Period
     title: Reporting Period
@@ -287,9 +287,6 @@
     default_value: 6 hours
     allow_multiple_values: true
     required: false
-    ui_config:
-      type: advanced
-      display: popover
     model: block_bq_info_schema
     explore: jobs_timeline_by_organization
     listens_to_filters: []
@@ -300,9 +297,6 @@
     default_value: ''
     allow_multiple_values: true
     required: false
-    ui_config:
-      type: advanced
-      display: popover
     model: block_bq_info_schema
     explore: jobs_timeline_by_organization
     listens_to_filters: []

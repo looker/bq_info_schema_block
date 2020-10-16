@@ -8,12 +8,12 @@ constant: CONFIG_PROJECT_NAME {
 }
 
 constant: CONNECTION_NAME {
-  value: "looker_app_2"
+  value: "Connection Name"
   export: override_required
 }
 
 constant: BQ_ADMIN_PROJECT {
-  value: "bigquery-trial-250422"
+  value: "Big Query Admin Project Name"
   export: override_required
 }
 
