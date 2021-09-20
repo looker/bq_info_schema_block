@@ -1,0 +1,40 @@
+{
+  "label": "BigQuery Information Schema Performance Monitoring",
+  "category_label": "Models",
+  "branding": {
+    "image_uri": "https://marketplace-api.looker.com/block-icons/bq_icon.png",
+    "tagline": "Monitor and Explore your BigQuery Usage and Slot Consumption"
+  },
+
+    "constants": {
+      "CONFIG_PROJECT_NAME": {
+        "label": "Config Project Name"
+      },
+      "CONNECTION_NAME": {
+        "label": "Connection Name",
+        "value_constraint": "connection"
+      },
+      "BQ_ADMIN_PROJECT": {
+        "label": "BigQuery Admin Project",
+        "description": "The Name of your BigQuery Admin Project."
+      },
+      "REGION": {
+        "label": "Dataset Location",
+        "description": "For example 'region-us' or 'region-eu'."
+      }
+    },
+    "models": [
+      {
+        "name": "block_bq_info_schema",
+        "connection_constant": "CONNECTION_NAME"
+      }
+    ],
+    "auxiliary_projects": [
+      {
+        "git_uri": "git://github.com/looker/bq_info_schema_block_config.git",
+        "git_ref": "17efa4cfc514ddbbc10357e29a7d81b924720018",
+        "label": "BQ Info Schema Config",
+        "constant_name": "CONFIG_PROJECT_NAME"
+      }
+    ]
+}
